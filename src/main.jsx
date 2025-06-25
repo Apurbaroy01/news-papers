@@ -4,6 +4,7 @@ import './index.css'
 
 import {
   createBrowserRouter,
+  Navigate,
   RouterProvider,
 } from "react-router-dom";
 import Root from './Root';
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root></Root>,
     children: [
+      {
+        path: "/",
+        element: <Navigate to={"category/01"}></Navigate>
+      },
       {
         path: "/category/:id",
         loader: ({ params }) => fetch(`https://openapi.programming-hero.com/api/news/category/${params.id}`),
