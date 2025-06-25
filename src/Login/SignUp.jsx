@@ -2,15 +2,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoIosEyeOff, IoIosEye } from "react-icons/io";
 import { useContext, useState } from "react";
 import { AuthConText } from "../FireBase/Provider";
+import { toast } from "react-toastify";
 
 
 
 const SignUp = () => {
-    const {createUser}=useContext(AuthConText)
-    const navigate=useNavigate()
+    const { createUser } = useContext(AuthConText)
+    const navigate = useNavigate()
 
     const [icon, showIcon] = useState();
-    const [error, setError]=useState()
+    const [error, setError] = useState()
     const handleSubmit = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -19,26 +20,30 @@ const SignUp = () => {
 
         setError('')
 
-        if(password.length <6){
+        if (password.length < 6) {
             setError('please type 6 letter')
             return;
         };
-        if(!trams){
+        if (!trams) {
             setError("please accpt trams & condition")
             return;
         }
 
-        console.log(email, password,trams);
+        console.log(email, password, trams);
 
         createUser(email, password)
-        .then((result)=>{
-            console.log(result.user)
-            navigate("/category/01")
-        })
-        .catch((error)=>{
-            console.log(error.message)
-        })
-    }
+            .then((result) => {
+                console.log(result.user)
+                navigate("/category/01")
+                toast('SignUp Successfully')
+            })
+            .catch((error) => {
+                console.log(error.message)
+                setError(error.message)
+            })
+    };
+
+   
     return (
         <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content flex-col ">
@@ -63,18 +68,19 @@ const SignUp = () => {
                                 </div>
 
                                 <label className="label">
-                                    <input type="checkbox" className="checkbox" name="trams"/>
-                                   I accpt trams & condition
+                                    <input type="checkbox" className="checkbox" name="trams" />
+                                    I accpt trams & condition
                                 </label>
 
                                 <div><a className="link link-hover">Forgot password?</a></div>
                                 <button className="btn btn-neutral mt-4">Register</button>
+
                                 <p>Don`t have an account, please <Link to="/login" className="underline">Login</Link></p>
                             </fieldset>
                         </form>
                         <div>
                             {
-                                error && <p>{error}</p>
+                                error && <p className="text-red-500">{error}</p>
                             }
                         </div>
                     </div>

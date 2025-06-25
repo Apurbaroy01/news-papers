@@ -1,17 +1,21 @@
+
 import { useContext } from "react";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { AuthConText } from "../../FireBase/Provider";
 
+
 const SocialLogin = () => {
-    const {createusertGoogle}=useContext(AuthConText);
+    const {createusertGoogle}=useContext(AuthConText)
+    
     const handleGoogleLogin=()=>{
         createusertGoogle()
         .then((result)=>{
-            console.log(result)
+            console.log(result.data)
         })
         .then((error)=>{
             console.log(error.message)
         })
+        
     };
     return (
 

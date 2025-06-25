@@ -25,7 +25,7 @@ const Navbar = () => {
         <div className="w-11/12 flex mx-auto py-4 items-center justify-between">
             <div></div>
             <div className="space-x-5">
-                <NavLink to='/'>Home</NavLink>
+                <NavLink to='/category/01'>Home</NavLink>
                 <NavLink to='/about'>About</NavLink>
                 <NavLink to='/carrer'>Carrer</NavLink>
             </div>
