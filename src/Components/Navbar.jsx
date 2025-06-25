@@ -29,11 +29,12 @@ const Navbar = () => {
                 <NavLink to='/about'>About</NavLink>
                 <NavLink to='/carrer'>Carrer</NavLink>
             </div>
-            <div className="flex space-x-2">
+            <div className="flex space-x-2 items-center border rounded-2xl p-2">
                 {/* <img src={profile} /> */}
                 {
                     user ? <>
-                        <p>{user.email}</p>
+                        <img className="btn rounded" src={user.photoURL} />
+                        <p className="font-bold">{user.displayName}</p>
                         <p onClick={handlSignOut} className="btn">Log Out</p>
                     </> :
                         <p className="btn"><NavLink to='/login'>Login</NavLink></p>

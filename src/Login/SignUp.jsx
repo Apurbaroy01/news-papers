@@ -7,13 +7,15 @@ import { toast } from "react-toastify";
 
 
 const SignUp = () => {
-    const { createUser } = useContext(AuthConText)
+    const { createUser,userProfile } = useContext(AuthConText)
     const navigate = useNavigate()
 
     const [icon, showIcon] = useState();
     const [error, setError] = useState()
     const handleSubmit = (e) => {
         e.preventDefault();
+        const name = e.target.name.value;
+        const photo = e.target.photo.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
         const trams = e.target.trams.checked;
@@ -29,11 +31,17 @@ const SignUp = () => {
             return;
         }
 
-        console.log(email, password, trams);
+        console.log(name,photo,email, password, trams);
 
         createUser(email, password)
             .then((result) => {
                 console.log(result.user)
+
+                userProfile({displayName:name, photoURL:photo})
+                .then(()=>{
+                    // profile update
+                })
+
                 navigate("/category/01")
                 toast('SignUp Successfully')
             })
@@ -55,9 +63,13 @@ const SignUp = () => {
                     <div className="card-body">
                         <form onSubmit={handleSubmit}>
                             <fieldset className="fieldset">
-                                <label className="label">Email</label>
+                                
+                                <input type="text" className="input" placeholder="Name" name="name" />
+                                
+                                <input type="text" className="input" placeholder="Photo-URL" name="photo" />
+                                
                                 <input type="email" className="input" placeholder="Email" name="email" />
-                                <label className="label">Password</label>
+                                
                                 <div className="relative">
                                     <input type={icon ? 'text' : 'password'} className="input" placeholder="Password" name="password" />
                                     <p onClick={() => showIcon(!icon)} className="absolute right-4 top-4">

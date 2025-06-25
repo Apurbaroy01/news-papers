@@ -13,12 +13,14 @@ import Login from './Login/Login';
 import SignUp from './Login/SignUp';
 import Provider from './FireBase/Provider';
 import { ToastContainer } from 'react-toastify';
+import Error from './Error';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement:<Error></Error>,
     children: [
       {
         path: "/",
