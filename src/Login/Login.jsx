@@ -72,7 +72,7 @@ const Login = () => {
                                 <div className="divider">OR</div>
                                 <div className=" **:w-full relative">
                                     <button onClick={handleGoogle} className="btn btn-primary">Login With Google</button>
-                                    <p className="absolute top-3 right-18 text-white text-xl"><IoLogoGoogle /></p>
+                                    <p className=" absolute top-3 right-18 text-white text-xl"><IoLogoGoogle /></p>
                                 </div>
                                 <p>Don`t have an account, please <Link to="/signup" className="underline">Sign up</Link></p>
                             </fieldset>
