@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 
+
 const LeftBar = () => {
     
-    const [category, setCategory] = useState([])
+    const [category, setCategory] = useState([]);
+    
+    
     useEffect(() => {
         fetch('https://openapi.programming-hero.com/api/news/categories')
             .then(response => response.json())
